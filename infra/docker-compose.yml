@@ -1,0 +1,34 @@
+# Top-level 'services' block defines all the containers in your application
+services:
+
+  # Name of the service (used as a hostname for internal communication)
+  gateway:
+    # Configuration for building the Docker image from source
+    build:
+      context: ../gateway        # The directory containing the code/Dockerfile
+      dockerfile: Dockerfile     # Specific name of the Dockerfile to use
+
+    # Map host port (left) to container port (right)
+    ports:
+      - "8000:8000"
+
+    # Load environment variables from a file on your local machine
+    env_file:
+      - ../gateway/.env
+
+    # Mount local directories into the container for 'hot-reloading' code changes
+    volumes:
+      - ../gateway:/app
+
+    # Connect this service to a specific virtual network
+    networks:
+      - microservice-network
+
+    # Direct environment variables; 1 forces logs to appear immediately in terminal
+    environment:
+      - PYTHONUNBUFFERED=1
+
+# 'networks' section creates a shared virtual space for services to talk to each other
+networks:
+  microservice-network:
+    driver: bridge # The standard driver for containers on the same host
