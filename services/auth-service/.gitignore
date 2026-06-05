@@ -1,0 +1,4 @@
+.env
+.pyenv
+authvenv
+__pycache__

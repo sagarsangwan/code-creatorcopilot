@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+gunicorn # Production readiness ke liye process manager style usage
+python-jose[cryptography] # JWT encode/decode
+httpx # HTTP client, OAuth related integrations me useful
+SQLAlchemy # ORM
+psycopg2-binary # PostgreSQL driver
+requests
+pydantic
+dotenv
+google-auth
+google-auth[httpx]
+alembic
